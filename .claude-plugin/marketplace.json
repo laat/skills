@@ -1,0 +1,20 @@
+{
+  "name": "laat-skills",
+  "owner": {
+    "name": "laat",
+    "url": "https://laat.dev"
+  },
+  "metadata": {
+    "description": "laat's Claude Code skills",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "format-guard",
+      "description": "Set up a git pre-push hook that rejects pushes when code isn't formatted",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/format-guard"]
+    }
+  ]
+}
