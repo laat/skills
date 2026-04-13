@@ -17,6 +17,13 @@
       "skills": ["./skills/format-guard"]
     },
     {
+      "name": "readme-assert",
+      "description": "Verify and convert README code examples into testable blocks using readme-assert",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/readme-assert/readme-assert", "./skills/readme-assert/readme-assertify"]
+    },
+    {
       "name": "mor",
       "description": "AI-accessible notes you actually own — plain markdown on your disk",
       "source": {
