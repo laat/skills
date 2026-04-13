@@ -2,11 +2,12 @@
 
 A collection of [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills by [laat](https://laat.dev).
 
-## Available Skills
+## Available Plugins
 
-| Skill | Description |
-|-------|-------------|
+| Plugin | Description |
+|--------|-------------|
 | [format-guard](skills/format-guard/SKILL.md) | Set up a git pre-push hook that rejects pushes when code isn't formatted |
+| [mor](https://github.com/laat/mor) | AI-accessible notes you actually own — plain markdown on your disk |
 
 ## Installation
 
