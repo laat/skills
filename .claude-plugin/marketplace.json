@@ -12,14 +12,14 @@
     {
       "name": "format-guard",
       "description": "Set up a git pre-push hook that rejects pushes when code isn't formatted",
-      "source": "./",
+      "source": "./plugins/format-guard",
       "strict": false,
       "skills": ["./skills/format-guard"]
     },
     {
       "name": "readme-assert",
       "description": "Verify and convert README code examples into testable blocks using readme-assert",
-      "source": "./",
+      "source": "./plugins/readme-assert",
       "strict": false,
       "skills": ["./skills/readme-assert", "./skills/readme-assertify"]
     },
