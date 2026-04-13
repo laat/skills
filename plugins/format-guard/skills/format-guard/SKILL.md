@@ -18,8 +18,9 @@ Set up a git pre-push hook that runs the project's code formatter in **check-onl
 3. **Check for an existing pre-push hook.** If `.git/hooks/pre-push` already exists, show the user its contents and ask how to proceed — don't overwrite silently.
 
 4. **Write the hook.** Create `.git/hooks/pre-push` as a shell script that:
-   - Runs the formatter's check command
-   - Exits non-zero with a clear message if formatting issues are found
+   - Captures the formatter's check command output (stdout and stderr)
+   - On success: prints nothing — the hook should be completely silent when everything is fine
+   - On failure: prints the captured output followed by a clear message explaining what happened and how to fix it
    - Keeps it minimal — just the check, no extra logic
 
 5. **Make it executable.** `chmod +x .git/hooks/pre-push`
