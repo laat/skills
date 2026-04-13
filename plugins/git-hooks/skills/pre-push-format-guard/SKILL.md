@@ -1,5 +1,5 @@
 ---
-name: format-guard
+name: pre-push-format-guard
 description: Set up a git pre-push hook that rejects pushes when code isn't formatted. Detects the repo's formatter and writes a check-only hook.
 user-invocable: true
 allowed-tools: Bash Glob Grep Read Write

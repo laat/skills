@@ -10,11 +10,14 @@
   },
   "plugins": [
     {
-      "name": "format-guard",
-      "description": "Set up a git pre-push hook that rejects pushes when code isn't formatted",
-      "source": "./plugins/format-guard",
+      "name": "git-hooks",
+      "description": "Git hooks for code formatting — pre-push and pre-commit guards",
+      "source": "./plugins/git-hooks",
       "strict": false,
-      "skills": ["./skills/format-guard"]
+      "skills": [
+        "./skills/pre-push-format-guard",
+        "./skills/pre-commit-format-guard"
+      ]
     },
     {
       "name": "readme-assert",
