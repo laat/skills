@@ -30,8 +30,8 @@
       "name": "mor",
       "description": "AI-accessible notes you actually own — plain markdown on your disk",
       "source": {
-        "source": "github",
-        "repo": "laat/mor"
+        "source": "npm",
+        "package": "mor"
       }
     }
   ]
