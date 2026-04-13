@@ -11,29 +11,56 @@ Convert existing README code examples into testable
 [readme-assert](https://readme-assert.laat.dev/) blocks by adding `test` tags
 and assertion comments.
 
-## Core Workflow
+## Steps
 
-Process markdown files to identify JavaScript/TypeScript code blocks and
-categorize them:
+1. **Read the README.** Find `README.md` or `readme.md` in the current working
+   directory. If neither exists, tell the user and stop.
 
-- **Already tagged blocks** are skipped
-- **Blocks with assertion syntax** get the `test` tag added
-- **Convertible blocks** receive new assertion comments using `//=>` notation
-- **Non-convertible blocks** (setup code, shell commands, external dependencies)
-  remain untouched
+2. **Scan code blocks.** Identify all fenced JavaScript/TypeScript blocks
+   (` ```javascript `, ` ```js `, ` ```typescript `, ` ```ts `). Categorize each:
+   - **Already tagged** (`test` or `test:group`) — skip.
+   - **Has assertion comments** (`//=>`, `// →`, `// ->`, `// throws`,
+     `// rejects`) but no `test` tag — add ` test` to the fence.
+   - **Convertible** — expressions with deterministic output that can become
+     self-verifying. Add `test` tag and assertion comments.
+   - **Non-convertible** — setup code, shell commands, conceptual snippets, side
+     effects (file writes, HTTP requests). Leave untouched.
 
-## Key Transformation Patterns
+3. **Apply edits** and show the user what changed.
 
-Target expressions that can be self-verifying: bare function calls,
-`console.log()` statements, and variable assignments with demonstrable results.
-Expected values come from surrounding documentation or code context analysis.
+4. **Run `npx readme-assert`** to confirm the converted blocks pass.
+
+## Assertion Syntax Reference
+
+Use these comment forms when adding assertions:
+
+    expr; //=> value              — equality (strict for primitives, deep for objects)
+    expr; // => value             — alternate spacing
+    expr; // throws /pattern/     — throws matching error
+    expr; //=> TypeError: message — throws specific error type
+    console.log(expr); //=> value — preserves the log, adds assertion
+    await promise; //=> value     — resolved value
+    promise; // rejects /pattern/ — rejected value
+
+## Transformation Patterns
+
+- **Bare expressions with known results** → append `//=> value`
+- **`console.log(expr)`** → append `//=> value` (readme-assert preserves the
+  log and adds an assertion)
+- **Variable assignments followed by usage** → assert on the usage expression
+- **Sequential related blocks** → consider grouping with `test:groupname` so
+  variables/imports carry across blocks
+- **Blocks with descriptions in prose** → use text as the test description:
+  ` ```javascript test description from prose `
 
 ## Important Principles
 
-The conversion prioritizes readability — assertion comments should appear as
-natural annotations rather than test scaffolding. Avoid forcing testability on
-conceptual or incomplete snippets; a partially-tested README provides more value
-than an awkwardly over-instrumented one.
-
-Blocks demonstrating side effects like file writes or HTTP requests typically
-remain unconverted unless mocking is feasible.
+- Readability first — assertion comments should read as natural annotations, not
+  test scaffolding.
+- Don't force testability on conceptual or incomplete snippets. A
+  partially-tested README provides more value than an awkwardly
+  over-instrumented one.
+- Expected values must come from surrounding documentation, code context
+  analysis, or actually running the code — never guess.
+- When blocks share setup (imports, variables), group them with `test:groupname`
+  rather than duplicating setup code.
