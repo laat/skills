@@ -1,24 +1,31 @@
 # Skills
 
-A collection of [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skills by [laat](https://laat.dev).
+A collection of agent skills by [laat](https://laat.dev).
 
-## Available Plugins
+## Available Skills
 
-| Plugin                                                       | Description                                                                      |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------- |
-| [git-hooks](plugins/git-hooks/)                              | Git hooks for code formatting — pre-push and pre-commit guards                   |
-| [readme-assert](plugins/readme-assert/skills/readme-assert/) | Verify and convert README code examples into testable blocks using readme-assert |
-| [mor](https://github.com/laat/mor)                           | AI-accessible notes you actually own — plain markdown on your disk               |
+| Skill                                                      | Description                                                                           |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [pre-commit-format-guard](skills/pre-commit-format-guard/) | Set up a git pre-commit hook that rejects commits when staged files are not formatted |
+| [pre-push-format-guard](skills/pre-push-format-guard/)     | Set up a git pre-push hook that rejects pushes when code is not formatted             |
+| [readme-assert](skills/readme-assert/)                     | Verify README code examples using readme-assert                                       |
+| [readme-assertify](skills/readme-assertify/)               | Convert README code examples into testable readme-assert blocks                       |
 
 ## Installation
 
 ```sh
-claude plugin marketplace add laat/skills
+npx skills add laat/skills
+```
+
+To list the skills without installing them:
+
+```sh
+npx skills add laat/skills --list
 ```
 
 ## Usage
 
-Once installed, invoke a skill with `/` in Claude Code:
+Once installed, invoke a skill by name in your agent:
 
 ```
 /pre-push-format-guard
